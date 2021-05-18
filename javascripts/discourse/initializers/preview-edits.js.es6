@@ -26,7 +26,7 @@ export default {
     withPluginApi ('0.8.40', api => {
       api.onPageChange (() => {
         loadScript (
-          'https://www.rivoq.com/original/1X/imagesloaded.pkgd.min.js'
+          'https://www.rivoq.com/uploads/default/assets/imagesloaded.pkgd.min.js'
         ).then (() => {
           $ ('.tiles-grid').imagesLoaded (resizeAllGridItems ());
         });
