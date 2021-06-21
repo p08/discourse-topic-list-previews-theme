@@ -21,7 +21,7 @@
     {{/if}}
   {{/if}}
 
-  <div class='topic-details'>
+  <div class='topic-details'> <div class='topic-excerpt-main'>
     {{#if notTilesStyle}}
       <div class='main-link'>
         {{raw "list/topic-list-title"
@@ -63,6 +63,7 @@
         <span class="age activity" title="{{topic.bumpedAtTitle}}"><a href="{{topic.lastPostUrl}}">{{format-date topic.bumpedAt format="tiny" noTitle="true"}}</a></span>
       </div>
     {{/if}}
+    </div>
   </div>
 
   {{#if tilesStyle}}
