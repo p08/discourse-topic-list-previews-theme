@@ -1,7 +1,7 @@
 import { featuredImagesEnabled } from '../lib/tlp-utilities';
 import { ajax } from 'discourse/lib/ajax';
 import { withPluginApi } from 'discourse/lib/plugin-api';
-import PreloadStore from "preload-store";
+import PreloadStore from "discourse/lib/preload-store";
 import CategoryList from "discourse/models/category-list";
 import TopicList from "discourse/models/topic-list";
 import {findOrResetCachedTopicList} from 'discourse/lib/cached-topic-list';
@@ -18,22 +18,18 @@ export default {
       'CategoryNone'
     ];
     let filters = site.get('filters');
-    filters.push('top');
+
+    const topIndex = filters.indexOf('top');
+    if (topIndex > -1) {
+      filters.splice(topIndex, 1);
+    }
+
     filters.forEach(filter => {
       const filterCapitalized = filter.capitalize();
       discoveryTopicRoutes.push(filterCapitalized);
       discoveryCategoryRoutes.push(...[
         `${filterCapitalized}Category`,
         `${filterCapitalized}CategoryNone`
-      ]);
-    });
-
-    site.get('periods').forEach(period => {
-      const periodCapitalized = period.capitalize();
-      discoveryTopicRoutes.push(`Top${periodCapitalized}`);
-      discoveryCategoryRoutes.push(...[
-        `Top${periodCapitalized}Category`,
-        `Top${periodCapitalized}CategoryNone`
       ]);
     });
 
